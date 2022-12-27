@@ -19,12 +19,7 @@ static int close(t_vars *vars)
 
 int main()
 {
-    t_data data;
-    
-    // t_ray ray;
-    t_color pixel_color;
     t_vars vars;
-
     t_scene scene;
 
     scene = scene_init(image(1600, 900), camera(vec(0, 0, 0), \
@@ -46,37 +41,11 @@ int main()
     // obj_add(&scene.light, POINT, point_light(vec(15, 15, -10), color(1, 1, 1), 0.2));
     // obj_add(&scene.light, POINT, point_light(vec(2, 2, -9), color(1, 1, 1), 0.6));
 
-    int j;
-    int i;
-    double u;
-    double v;
 
+    set_mlx(&vars, &scene);
+    image_put(&vars, &scene);
 
-
-    vars.mlx = mlx_init();
-    vars.win = mlx_new_window(vars.mlx, scene.image.image_width, scene.image.image_height, "seunchoi_minirt");
-    data.img = mlx_new_image(vars.mlx, scene.image.image_width, scene.image.image_height);
-    data.addr = mlx_get_data_addr(data.img, &data.pixel_bits, &data.line_length, &data.endian);
-    
-    // 뷰포트의 왼쪽하단부터 그리기 위해 i = 0, j = 높이 부터 시작
-    j = scene.image.image_height - 1;
-    while (j >= 0)
-    {
-        i = 0;
-        while (i < scene.image.image_width)
-        {
-            u = (double)i / (double)(scene.image.image_width - 1);
-            v = (double)j / (double)(scene.image.image_height - 1);
-            scene.ray = ray_viewport(&scene, u, v);
-            pixel_color = ray_color(&scene);
-            // mlx_pixel_put(mlx_ptr, mlx_win, i, img.image_height - 1 - j, rgb_to_int(0.0, &color));
-            my_mlx_pixel_put(&data, i, scene.image.image_height - 1 - j, rgb_to_int(0.0, &pixel_color));
-            ++i;
-        }
-        --j;
-    }
-
-    mlx_put_image_to_window(vars.mlx, vars.win, data.img, 0, 0);
+    mlx_put_image_to_window(vars.mlx, vars.win, vars.data.img, 0, 0);
     mlx_hook(vars.win, X_EVENT_KEY_PRESS, 0, &key_press, &vars);
     mlx_hook(vars.win, X_EVENT_KEY_EXIT, 0, &close, &vars);
     mlx_loop(vars.mlx);

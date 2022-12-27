@@ -1,5 +1,13 @@
 #include "minirt.h"
 
+void set_mlx(t_vars *vars, t_scene *scene)
+{
+    vars->mlx = mlx_init();
+    vars->win = mlx_new_window(vars->mlx, scene->image.image_width, scene->image.image_height, "seunchoi_minirt");
+    vars->data.img = mlx_new_image(vars->mlx, scene->image.image_width, scene->image.image_height);
+    vars->data.addr = mlx_get_data_addr(vars->data.img, &vars->data.pixel_bits, &vars->data.line_length, &vars->data.endian);
+}
+
 int rgb_to_int(double trans, t_vec *color)
 {
     int t;

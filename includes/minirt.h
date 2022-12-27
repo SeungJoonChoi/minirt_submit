@@ -25,12 +25,6 @@
 #define LUMEN 3; //light_ratio * LUMEN
 #define SHADOW_BIAS __FLT_EPSILON__
 
-typedef struct s_vars
-{
-    void *mlx;
-    void *win;
-} t_vars;
-
 typedef struct s_data
 {
 	void	*img;
@@ -39,6 +33,13 @@ typedef struct s_data
 	int		line_length;
 	int		endian;
 } t_data;
+
+typedef struct s_vars
+{
+    void *mlx;
+    void *win;
+    t_data data;
+} t_vars;
 
 typedef struct s_vec
 {
@@ -157,10 +158,12 @@ t_vec lower_left_corner(t_camera *camera);
 t_camera camera(t_vec orig, t_vec dir, double fov, double aspect_ratio);
 //image.c
 t_image image(int width, int height);
+void image_put(t_vars *vars, t_scene *scene);
 //color.c
 t_color color(double r, double g, double b);
 t_color ray_color(t_scene *scene);
 //mlx_utils.c
+void set_mlx(t_vars *vars, t_scene *scene);
 int rgb_to_int(double trans, t_vec *color);
 void my_mlx_pixel_put(t_data *data, int x, int y, int color);
 //sphere.c
