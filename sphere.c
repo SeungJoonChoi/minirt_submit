@@ -11,19 +11,13 @@ t_sphere *sphere(t_vec origin, double radius, t_color albedo)
     return (new);
 }
 
-static int sphere_root(t_ray *ray, t_sphere *sp, t_hit_record *rec)
-{
-
-}
-
-int hit_sphere(t_ray *ray, t_sphere *sp, t_hit_record *rec)
+static int sphere_root(t_ray *ray, t_sphere *sp, t_hit_record *rec, double *root)
 {
     t_vec oc;
     double half_b;
     double c;
     double discriminant;
     double sqrtd;
-    double root;
 
     oc = v_sub(ray->o, sp->o);
     half_b = dot(ray->d, oc);
@@ -32,17 +26,28 @@ int hit_sphere(t_ray *ray, t_sphere *sp, t_hit_record *rec)
     if (discriminant < 0)
         return (0);
     sqrtd = sqrt(discriminant);
-    root = -half_b - sqrtd;
-    if (root < rec->t_min || root > rec->t_max)
+    *root = -half_b - sqrtd;
+    if (*root < rec->t_min || *root > rec->t_max)
     {
-        root = -half_b + sqrtd;
-        if (root < rec->t_min || root > rec->t_max)
+        *root = -half_b + sqrtd;
+        if (*root < rec->t_min || *root > rec->t_max)
             return (0);
     }
-    rec->t = root;
-    rec->t_max = rec->t;
-    rec->p = ray_at(ray, root);
-    rec->n = v_div(v_sub(rec->p, sp->o), sp->r);
-    rec->albedo = sp->albedo;
     return (1);
+}
+
+int hit_sphere(t_ray *ray, t_sphere *sp, t_hit_record *rec)
+{
+    double root;
+
+    if (sphere_root(ray, sp, rec, &root))
+    {
+        rec->t = root;
+        rec->t_max = rec->t;
+        rec->p = ray_at(ray, root);
+        rec->n = v_div(v_sub(rec->p, sp->o), sp->r);
+        rec->albedo = sp->albedo;
+        return (1);
+    }
+    return (0);
 }
