@@ -18,7 +18,7 @@ INCLUDE = -I./includes -I./mlx
 LIBS = -L./mlx -lmlx
 
 SRCS = main.c ray.c vec1.c vec2.c image.c camera.c color.c mlx_utils.c sphere.c hit.c obj_list.c scene.c \
-vec3.c light.c plane.c cylinder.c
+vec3.c light1.c light2.c plane.c cylinder.c
 OBJS = $(SRCS:.c=.o)
 
 .c.o :

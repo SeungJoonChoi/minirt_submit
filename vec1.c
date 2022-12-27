@@ -10,7 +10,7 @@ t_vec vec(double x, double y, double z)
     return (ret);
 }
 
-t_vec vec_sum(t_vec vec1, t_vec vec2)
+t_vec v_sum(t_vec vec1, t_vec vec2)
 {
     t_vec ret;
 
@@ -20,7 +20,7 @@ t_vec vec_sum(t_vec vec1, t_vec vec2)
     return (ret);
 }
 
-t_vec vec_sub(t_vec vec1, t_vec vec2)
+t_vec v_sub(t_vec vec1, t_vec vec2)
 {
     t_vec ret;
 
@@ -30,7 +30,7 @@ t_vec vec_sub(t_vec vec1, t_vec vec2)
     return (ret);
 }
 
-t_vec vec_mul(t_vec vec, double t)
+t_vec v_mul(t_vec vec, double t)
 {
     t_vec ret;
 
@@ -40,7 +40,7 @@ t_vec vec_mul(t_vec vec, double t)
     return (ret);
 }
 
-t_vec vec_div(t_vec vec, double t)
+t_vec v_div(t_vec vec, double t)
 {
     t_vec ret;
 

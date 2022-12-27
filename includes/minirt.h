@@ -35,7 +35,7 @@ typedef struct s_data
 {
 	void	*img;
 	char	*addr;
-	int		bits_per_pixel;
+	int		pixel_bits;
 	int		line_length;
 	int		endian;
 } t_data;
@@ -51,8 +51,8 @@ typedef t_vec t_color;
 
 typedef struct s_ray
 {
-    t_vec orig;
-    t_vec dir;
+    t_vec o;
+    t_vec d;
 } t_ray;
 
 typedef struct s_image
@@ -76,7 +76,7 @@ typedef struct s_camera
 typedef struct s_hit_record
 {
     t_vec p;
-    t_vec normal;
+    t_vec n;
     double t_min;
     double t_max;
     double t;
@@ -86,23 +86,23 @@ typedef struct s_hit_record
 
 typedef struct s_sphere
 {
-    t_vec orig;
-    double rad;
+    t_vec o;
+    double r;
     t_color albedo;
 } t_sphere;
 
 typedef struct s_plane
 {
-    t_vec orig;
-    t_vec dir;
+    t_vec o;
+    t_vec d;
     t_color albedo;
 } t_plane;
 
 typedef struct s_cylinder
 {
-    t_vec orig;
-    t_vec dir;
-    double rad;
+    t_vec o;
+    t_vec d;
+    double r;
     double half_h;
     t_color albedo;
 } t_cylinder;
@@ -134,20 +134,20 @@ typedef struct s_scene
 
 //vec1.c
 t_vec vec(double x, double y, double z);
-t_vec vec_sum(t_vec vec1, t_vec vec2);
-t_vec vec_sub(t_vec vec1, t_vec vec2);
-t_vec vec_mul(t_vec vec, double t);
-t_vec vec_div(t_vec vec, double t);
+t_vec v_sum(t_vec vec1, t_vec vec2);
+t_vec v_sub(t_vec vec1, t_vec vec2);
+t_vec v_mul(t_vec vec, double t);
+t_vec v_div(t_vec vec, double t);
 //vec2.c
-double vec_dot(t_vec vec1, t_vec vec2);
-t_vec vec_cross(t_vec vec1, t_vec vec2);
-double length_squared(t_vec vec);
-double vec_length(t_vec vec);
-t_vec vec_unit(t_vec vec);
+double dot(t_vec vec1, t_vec vec2);
+t_vec cross(t_vec vec1, t_vec vec2);
+double len_pow(t_vec vec);
+double len(t_vec vec);
+t_vec unit(t_vec vec);
 //vec3.c
-t_vec vec_limit(t_vec vec, t_vec limit);
-t_vec vec_mul_v(t_vec vec1, t_vec vec2);
-t_vec vec_sum_t(t_vec vec, double t);
+t_vec limit(t_vec vec, t_vec limit);
+t_vec mul_v(t_vec vec1, t_vec vec2);
+t_vec sum_t(t_vec vec, double t);
 //ray.c
 t_ray ray_set(t_vec *origin, t_vec* direction);
 t_vec ray_at(t_ray *ray, double t);
@@ -175,16 +175,17 @@ void obj_add(t_obj *head, int type, void *object);
 void obj_clear(t_obj *head);
 //scene.c
 t_scene scene_init(t_image img, t_camera cam, double ambient_ratio, t_color ambient_color);
-//light.c
+//light1.c
 t_light *point_light(t_vec orig, t_color color, double ratio);
 t_color phong_lighting(t_scene *scene);
-t_color point_light_get(t_scene *scene, t_light *light);
+//light2.c
+t_color get_specular(t_scene *scene, t_light *light, t_vec *light_dir);
+t_color get_diffuse(t_scene *scene, t_light *light, t_vec *light_dir);
 //plane.c
 t_plane *plane(t_vec origin, t_vec dir, t_color albedo);
 int hit_plane(t_ray *ray, t_plane *plane, t_hit_record *rec);
 //cylinder.c
 t_cylinder *cylinder(t_vec origin, t_vec dir, double diameter, double height, t_color albedo);
 int hit_cylinder(t_ray *ray, t_cylinder *cylinder, t_hit_record *rec);
-int hit_circle(t_ray *ray, t_cylinder *cylinder, t_hit_record *rec);
 
 #endif

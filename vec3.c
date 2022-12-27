@@ -1,6 +1,6 @@
 #include "minirt.h"
 
-t_vec vec_limit(t_vec vec, t_vec limit)
+t_vec limit(t_vec vec, t_vec limit)
 {
     t_vec ret;
 
@@ -19,7 +19,7 @@ t_vec vec_limit(t_vec vec, t_vec limit)
     return (ret);
 }
 
-t_vec vec_mul_v(t_vec vec1, t_vec vec2)
+t_vec mul_v(t_vec vec1, t_vec vec2)
 {
     t_vec ret;
 
@@ -29,7 +29,7 @@ t_vec vec_mul_v(t_vec vec1, t_vec vec2)
     return (ret);
 }
 
-t_vec vec_sum_t(t_vec vec, double t)
+t_vec sum_t(t_vec vec, double t)
 {
     t_vec ret;
 
