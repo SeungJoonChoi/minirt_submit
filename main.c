@@ -41,7 +41,6 @@ int main()
     // obj_add(&scene.light, POINT, point_light(vec(15, 15, -10), color(1, 1, 1), 0.2));
     // obj_add(&scene.light, POINT, point_light(vec(2, 2, -9), color(1, 1, 1), 0.6));
 
-
     set_mlx(&vars, &scene);
     image_put(&vars, &scene);
 
