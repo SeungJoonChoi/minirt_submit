@@ -7,17 +7,24 @@ void obj_list_init(t_obj *head)
     head->next = NULL;
 }
 
-void obj_add(t_obj *head, int type, void *object)
+int obj_add(t_obj *head, int type, void *object)
 {
+    t_obj *new;
     t_obj *cur;
 
+    if (object == NULL)
+        return (1);
     cur = head;
     while (cur->next)
         cur = cur->next;
-    cur->next = (t_obj*)malloc(sizeof(t_obj));
+    new = (t_obj*)malloc(sizeof(t_obj));
+    if (new == NULL)
+        return (1);
+    cur->next = new;
     cur->next->next = NULL;
     cur->next->type = type;
     cur->next->element = object;
+    return (0);
 }
 
 void obj_clear(t_obj *head)

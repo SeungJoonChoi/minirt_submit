@@ -5,9 +5,12 @@
 #define radToDeg(angleInRadians) ((angleInRadians) * 180.0 / M_PI)
 
 #include "mlx.h"
+#include "libft.h"
+#include "get_next_line.h"
 #include <math.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <fcntl.h>
 
 # define X_EVENT_KEY_PRESS		2
 # define X_EVENT_KEY_EXIT		17
@@ -133,6 +136,13 @@ typedef struct s_scene
     t_hit_record rec;
 } t_scene;
 
+// typedef struct s_input_flag
+// {
+//     int ambient;
+//     int camera;
+//     int light;
+// } t_input_flag;
+
 //vec1.c
 t_vec vec(double x, double y, double z);
 t_vec v_sum(t_vec vec1, t_vec vec2);
@@ -174,10 +184,11 @@ void set_face_normal(t_ray *ray, t_hit_record *rec);
 int hit(t_ray *ray, t_obj *head, t_hit_record *rec);
 //obj_list.c
 void obj_list_init(t_obj *head);
-void obj_add(t_obj *head, int type, void *object);
+int obj_add(t_obj *head, int type, void *object);
 void obj_clear(t_obj *head);
 //scene.c
-t_scene scene_init(t_image img, t_camera cam, double ambient_ratio, t_color ambient_color);
+// t_scene scene_init(t_image img, t_camera cam, double ambient_ratio, t_color ambient_color);
+t_scene scene_init(char *infile);
 //light1.c
 t_light *point_light(t_vec orig, t_color color, double ratio);
 t_color phong_lighting(t_scene *scene);
@@ -190,5 +201,8 @@ int hit_plane(t_ray *ray, t_plane *plane, t_hit_record *rec);
 //cylinder.c
 t_cylinder *cylinder(t_vec origin, t_vec dir, double diameter, double height, t_color albedo);
 int hit_cylinder(t_ray *ray, t_cylinder *cylinder, t_hit_record *rec);
+//utils.c
+double atod(const char *str);
+void free_strs(char **strs);
 
 #endif

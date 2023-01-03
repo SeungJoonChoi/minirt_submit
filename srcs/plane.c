@@ -5,6 +5,8 @@ t_plane *plane(t_vec origin, t_vec dir, t_color albedo)
     t_plane *new;
 
     new = (t_plane*)malloc(sizeof(t_plane));
+    if (new == NULL)
+        return (NULL);
     new->o = origin;
     new->d = unit(dir);
     new->albedo = albedo;

@@ -5,6 +5,8 @@ t_cylinder *cylinder(t_vec origin, t_vec dir, double diameter, double height, t_
     t_cylinder *new;
 
     new = (t_cylinder*)malloc(sizeof(t_cylinder));
+    if (new == NULL)
+        return (NULL);
     new->o = origin;
     new->d = unit(dir);
     new->r = diameter * 0.5;
