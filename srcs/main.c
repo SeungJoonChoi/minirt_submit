@@ -21,10 +21,13 @@ int main(int argc, char **argv)
 {
     t_vars vars;
     t_scene scene;
+    int fd;
 
     if (argc != 2)
         return (1);
-    scene = scene_init(argv[1]);
+    fd = open(argv[1], O_RDONLY);
+    scene_init(&scene, fd);
+    close(fd);
 
     // scene = scene_init(image(1600, 900), camera(vec(0, 0, 0), \
     // vec(0, 0, 1), 90.0, 1600.0 / 900.0), 0.2, color(1, 1, 1));
@@ -48,12 +51,12 @@ int main(int argc, char **argv)
     set_mlx(&vars, &scene);
     image_put(&vars, &scene);
 
+    scene_clear(&scene);
+
     mlx_put_image_to_window(vars.mlx, vars.win, vars.data.img, 0, 0);
     mlx_hook(vars.win, X_EVENT_KEY_PRESS, 0, &key_press, &vars);
     mlx_hook(vars.win, X_EVENT_KEY_EXIT, 0, &quit_window, &vars);
     mlx_loop(vars.mlx);
-
-    obj_clear(&scene.world);
 
     return (0);
 }

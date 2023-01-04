@@ -39,3 +39,26 @@ void obj_clear(t_obj *head)
         head->next = temp;
     }
 }
+
+void scene_clear(t_scene* scene)
+{
+    t_obj *head;
+    t_obj *temp;
+
+    head = &scene->world;
+    while (head->next)
+    {
+        temp = head->next->next;
+        free(head->next->element);
+        free(head->next);
+        head->next = temp;
+    }
+    head = &scene->light;
+    while (head->next)
+    {
+        temp = head->next->next;
+        free(head->next->element);
+        free(head->next);
+        head->next = temp;
+    }
+}

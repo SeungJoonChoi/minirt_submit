@@ -17,9 +17,9 @@
 # define KEY_ESC			53
 
 //object
-#define SPHERE 0
-#define PLANE 1
-#define CYLINDER 2
+#define SP 0
+#define PL 1
+#define CY 2
 //light
 #define POINT 0
 
@@ -186,9 +186,9 @@ int hit(t_ray *ray, t_obj *head, t_hit_record *rec);
 void obj_list_init(t_obj *head);
 int obj_add(t_obj *head, int type, void *object);
 void obj_clear(t_obj *head);
+void scene_clear(t_scene* scene);
 //scene.c
-// t_scene scene_init(t_image img, t_camera cam, double ambient_ratio, t_color ambient_color);
-t_scene scene_init(char *infile);
+void scene_init(t_scene* scene, int infile);
 //light1.c
 t_light *point_light(t_vec orig, t_color color, double ratio);
 t_color phong_lighting(t_scene *scene);

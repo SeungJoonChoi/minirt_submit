@@ -9,11 +9,11 @@ void set_face_normal(t_ray *ray, t_hit_record *rec)
 
 static int hit_obj(t_ray *ray, t_obj *obj, t_hit_record *rec)
 {
-    if (obj->type == SPHERE)
+    if (obj->type == SP)
         return (hit_sphere(ray, obj->element, rec));
-    else if (obj->type == PLANE)
+    else if (obj->type == PL)
         return (hit_plane(ray, obj->element, rec));
-    else if (obj->type == CYLINDER)
+    else if (obj->type == CY)
         return (hit_cylinder(ray, obj->element, rec));
     return (0);
 }

@@ -20,72 +20,58 @@ static t_color ctov(char *str)
 {
     t_color ret;
 
-    ret.x = atod(str) / 255.999;
+    ret.x = atod(str) / 255.0;
     while (*str != ',')
         ++str;
     ++str;
-    ret.y = atod(str) / 255.999;
+    ret.y = atod(str) / 255.0;
     while (*str != ',')
         ++str;
     ++str;
-    ret.z = atod(str) / 255.999;
+    ret.z = atod(str) / 255.0;
     return (ret);
 }
 
-int put_elements(t_scene *scene, char *buf)
+static int put_elements(t_scene *s, char **e)
 {
-    char **e;
+    int ret;
 
-    e = ft_split(buf, ' ');
-    if (!e)
-        return (1);
+    ret = 0;
     if (!ft_strcmp(e[0], "A"))
-        scene->ambient = v_mul(ctov(e[2]), atod(e[1]));
+        s->ambient = v_mul(ctov(e[2]), atod(e[1]));
     else if (!ft_strcmp(e[0], "C"))
-        scene->camera = camera(stov(e[1]), stov(e[2]), atod(e[3]), 16.0 / 9.0);
+        s->camera = camera(stov(e[1]), stov(e[2]), atod(e[3]), 16.0 / 9.0);
     else if (!ft_strcmp(e[0], "L"))
-    {
-        if (obj_add(&scene->light, POINT, point_light(stov(e[1]), ctov(e[3]), atod(e[2]))))
-            return (1);
-    }
+        ret = obj_add(&s->light, POINT, point_light(stov(e[1]), \
+        ctov(e[3]), atod(e[2])));
     else if (!ft_strcmp(e[0], "sp"))
-    {
-        if (obj_add(&scene->world, SPHERE, sphere(stov(e[1]), atod(e[2]), ctov(e[3]))))
-            return (1);
-    }
+        ret = obj_add(&s->world, SP, sphere(stov(e[1]), atod(e[2]), ctov(e[3])));
     else if (!ft_strcmp(e[0], "pl"))
-    {
-        if (obj_add(&scene->world, PLANE, plane(stov(e[1]), stov(e[2]), ctov(e[3]))))
-            return (1);
-    }
+        ret = obj_add(&s->world, PL, plane(stov(e[1]), stov(e[2]), ctov(e[3])));
     else if (!ft_strcmp(e[0], "cy"))
-    {
-        if (obj_add(&scene->world, CYLINDER, cylinder(stov(e[1]), stov(e[2]), \
-        atod(e[3]), atod(e[4]), ctov(e[5]))))
-            return (1);
-    }
-    free_strs(e);
-    return (0);
+        ret = obj_add(&s->world, CY, cylinder(stov(e[1]), stov(e[2]), \
+        atod(e[3]), atod(e[4]), ctov(e[5])));
+    return (ret);
 }
 
-t_scene scene_init(char *infile)
+void scene_init(t_scene* scene, int infile)
 {
-    t_scene scene;
-    int fd;
     char* buf;
+    char **e;
 
-    scene.image = image(1600, 900);
-    obj_list_init(&(scene.world));
-    obj_list_init(&(scene.light));
-    fd = open(infile, O_RDONLY);
+    scene->image = image(1600, 900);
+    obj_list_init(&scene->world);
+    obj_list_init(&scene->light);
     while (1)
     {
-        buf = get_next_line(fd);
+        buf = get_next_line(infile);
         if (buf)
         {
-            if(put_elements(&scene, buf))
+            e = ft_split(buf, ' ');
+            if(!e || put_elements(scene, e))
             {
                 free(buf);
+                scene_clear(scene);
                 exit(1);
             }
             free(buf);
@@ -93,6 +79,4 @@ t_scene scene_init(char *infile)
         else
             break ;
     }
-    close(fd);
-    return (scene);
 }
