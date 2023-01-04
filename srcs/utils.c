@@ -54,6 +54,8 @@ void free_strs(char **strs)
 {
     int i;
 
+    if (strs == NULL)
+        return ;
     i = 0;
     while (strs[i])
     {

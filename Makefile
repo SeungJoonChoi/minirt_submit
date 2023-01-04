@@ -6,7 +6,7 @@
 #    By: seungjoon <seungjoon@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/16 12:18:03 by seunchoi          #+#    #+#              #
-#    Updated: 2023/01/04 19:28:09 by seungjoon        ###   ########.fr        #
+#    Updated: 2023/01/04 21:07:02 by seungjoon        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,8 @@ plane.c \
 cylinder.c \
 utils.c \
 file.c \
-exit.c
+exit.c \
+compo_list.c
 # OBJS = $(SRCS:.c=.o)
 
 GNL_LIST = get_next_line.c \

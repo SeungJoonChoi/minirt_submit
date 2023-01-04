@@ -40,25 +40,13 @@ void obj_clear(t_obj *head)
     }
 }
 
-void scene_clear(t_scene* scene)
+void minirt_clear(t_scene* scene, t_compo *compo)
 {
-    t_obj *head;
-    t_obj *temp;
+    t_obj *obj;
 
-    head = &scene->world;
-    while (head->next)
-    {
-        temp = head->next->next;
-        free(head->next->element);
-        free(head->next);
-        head->next = temp;
-    }
-    head = &scene->light;
-    while (head->next)
-    {
-        temp = head->next->next;
-        free(head->next->element);
-        free(head->next);
-        head->next = temp;
-    }
+    obj = &scene->world;
+    obj_clear(obj);
+    obj = &scene->light;
+    obj_clear(obj);
+    compo_clear(compo);
 }

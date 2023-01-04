@@ -136,12 +136,11 @@ typedef struct s_scene
     t_hit_record rec;
 } t_scene;
 
-// typedef struct s_input_flag
-// {
-//     int ambient;
-//     int camera;
-//     int light;
-// } t_input_flag;
+typedef struct s_compo
+{
+    char **split_line;
+    struct s_compo *next;
+} t_compo;
 
 //vec1.c
 t_vec vec(double x, double y, double z);
@@ -186,9 +185,10 @@ int hit(t_ray *ray, t_obj *head, t_hit_record *rec);
 void obj_list_init(t_obj *head);
 int obj_add(t_obj *head, int type, void *object);
 void obj_clear(t_obj *head);
-void scene_clear(t_scene* scene);
+void minirt_clear(t_scene* scene, t_compo *compo);
 //scene.c
-void scene_init(t_scene* scene, int infile);
+// void scene_init(t_scene* scene, int infile);
+void scene_init(t_scene* scene, t_compo *compo);
 //light1.c
 t_light *point_light(t_vec orig, t_color color, double ratio);
 t_color phong_lighting(t_scene *scene);
@@ -205,8 +205,14 @@ int hit_cylinder(t_ray *ray, t_cylinder *cylinder, t_hit_record *rec);
 double atod(const char *str);
 void free_strs(char **strs);
 //file.c
+void extension_check(char* filename);
 int open_file(char *filename);
+void init_compo(t_compo *compo, int fd);
 //exit.c
 void exit_err(char *msg);
+//compo_list.c
+void compo_list_init(t_compo *head);
+int compo_add(t_compo *head, char **split);
+void compo_clear(t_compo *head);
 
 #endif

@@ -21,12 +21,15 @@ int main(int argc, char **argv)
 {
     t_vars vars;
     t_scene scene;
+    t_compo compo;
     int fd;
 
     if (argc != 2)
         return (1);
     fd = open_file(argv[1]);
-    scene_init(&scene, fd);
+    init_compo(&compo, fd);
+
+    scene_init(&scene, &compo);
     close(fd);
 
     // scene = scene_init(image(1600, 900), camera(vec(0, 0, 0), \
@@ -51,7 +54,7 @@ int main(int argc, char **argv)
     set_mlx(&vars, &scene);
     image_put(&vars, &scene);
 
-    scene_clear(&scene);
+    minirt_clear(&scene, &compo);
 
     mlx_put_image_to_window(vars.mlx, vars.win, vars.data.img, 0, 0);
     mlx_hook(vars.win, X_EVENT_KEY_PRESS, 0, &key_press, &vars);

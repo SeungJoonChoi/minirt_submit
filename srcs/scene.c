@@ -54,29 +54,51 @@ static int put_elements(t_scene *s, char **e)
     return (ret);
 }
 
-void scene_init(t_scene* scene, int infile)
+// void scene_init(t_scene* scene, int infile)
+// {
+//     char* buf;
+//     char **e;
+
+//     scene->image = image(1600, 900);
+//     obj_list_init(&scene->world);
+//     obj_list_init(&scene->light);
+//     while (1)
+//     {
+//         buf = get_next_line(infile);
+//         if (buf)
+//         {
+//             e = ft_split(buf, ' ');
+//             if(!e || put_elements(scene, e))
+//             {
+//                 free(buf);
+//                 free_strs(e);
+//                 scene_clear(scene);
+//                 exit_err("Failed to initialize components.");
+//             }
+//             free(buf);
+//             free_strs(e);
+//         }
+//         else
+//             break ;
+//     }
+// }
+
+void scene_init(t_scene* scene, t_compo *compo)
 {
-    char* buf;
-    char **e;
+    t_compo *cur;
 
     scene->image = image(1600, 900);
     obj_list_init(&scene->world);
     obj_list_init(&scene->light);
-    while (1)
+
+    cur = compo->next;
+    while (cur)
     {
-        buf = get_next_line(infile);
-        if (buf)
+        if (put_elements(scene, cur->split_line))
         {
-            e = ft_split(buf, ' ');
-            if(!e || put_elements(scene, e))
-            {
-                free(buf);
-                scene_clear(scene);
-                exit_err("Failed to initialize components.");
-            }
-            free(buf);
+            minirt_clear(scene, compo);
+            exit_err("Failed to initialize components.");
         }
-        else
-            break ;
+        cur = cur->next;
     }
 }
