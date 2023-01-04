@@ -6,7 +6,7 @@
 #    By: seungjoon <seungjoon@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/16 12:18:03 by seunchoi          #+#    #+#              #
-#    Updated: 2023/01/03 22:05:38 by seungjoon        ###   ########.fr        #
+#    Updated: 2023/01/04 19:28:09 by seungjoon        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,8 +20,26 @@ LIBS = -L./mlx -lmlx -L./libft -lft
 SRC_DIR = ./srcs/
 GNL_DIR = ./get_next_line/
 
-SRC_LIST = main.c ray.c vec1.c vec2.c image.c camera.c color.c mlx_utils.c sphere.c hit.c obj_list.c scene.c \
-vec3.c light1.c light2.c plane.c cylinder.c utils.c
+SRC_LIST = main.c \
+ray.c \
+vec1.c \
+vec2.c \
+image.c \
+camera.c \
+color.c \
+mlx_utils.c \
+sphere.c \
+hit.c \
+obj_list.c \
+scene.c \
+vec3.c \
+light1.c \
+light2.c \
+plane.c \
+cylinder.c \
+utils.c \
+file.c \
+exit.c
 # OBJS = $(SRCS:.c=.o)
 
 GNL_LIST = get_next_line.c \

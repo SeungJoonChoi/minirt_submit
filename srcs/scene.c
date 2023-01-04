@@ -72,7 +72,7 @@ void scene_init(t_scene* scene, int infile)
             {
                 free(buf);
                 scene_clear(scene);
-                exit(1);
+                exit_err("Failed to initialize components.");
             }
             free(buf);
         }

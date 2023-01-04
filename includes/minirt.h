@@ -204,5 +204,9 @@ int hit_cylinder(t_ray *ray, t_cylinder *cylinder, t_hit_record *rec);
 //utils.c
 double atod(const char *str);
 void free_strs(char **strs);
+//file.c
+int open_file(char *filename);
+//exit.c
+void exit_err(char *msg);
 
 #endif
