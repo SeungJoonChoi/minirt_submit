@@ -187,7 +187,6 @@ int obj_add(t_obj *head, int type, void *object);
 void obj_clear(t_obj *head);
 void minirt_clear(t_scene* scene, t_compo *compo);
 //scene.c
-// void scene_init(t_scene* scene, int infile);
 void scene_init(t_scene* scene, t_compo *compo);
 //light1.c
 t_light *point_light(t_vec orig, t_color color, double ratio);
@@ -204,12 +203,13 @@ int hit_cylinder(t_ray *ray, t_cylinder *cylinder, t_hit_record *rec);
 //utils.c
 double atod(const char *str);
 void free_strs(char **strs);
-//file.c
+//init_compo.c
 void extension_check(char* filename);
-int open_file(char *filename);
+void invalid_form(t_compo *head);
 void init_compo(t_compo *compo, int fd);
 //exit.c
 void exit_err(char *msg);
+void exit_compo_clear(t_compo *head, char *msg);
 //compo_list.c
 void compo_list_init(t_compo *head);
 int compo_add(t_compo *head, char **split);

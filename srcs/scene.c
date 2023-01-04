@@ -54,35 +54,6 @@ static int put_elements(t_scene *s, char **e)
     return (ret);
 }
 
-// void scene_init(t_scene* scene, int infile)
-// {
-//     char* buf;
-//     char **e;
-
-//     scene->image = image(1600, 900);
-//     obj_list_init(&scene->world);
-//     obj_list_init(&scene->light);
-//     while (1)
-//     {
-//         buf = get_next_line(infile);
-//         if (buf)
-//         {
-//             e = ft_split(buf, ' ');
-//             if(!e || put_elements(scene, e))
-//             {
-//                 free(buf);
-//                 free_strs(e);
-//                 scene_clear(scene);
-//                 exit_err("Failed to initialize components.");
-//             }
-//             free(buf);
-//             free_strs(e);
-//         }
-//         else
-//             break ;
-//     }
-// }
-
 void scene_init(t_scene* scene, t_compo *compo)
 {
     t_compo *cur;

@@ -17,6 +17,16 @@ static int quit_window(t_vars *vars)
     return (0);
 }
 
+static int open_file(char *filename)
+{
+    int fd;
+
+    fd = open(filename, O_RDONLY);
+    if (fd < 0)
+        exit_err("Can not open file.");
+    return (fd);
+}
+
 int main(int argc, char **argv)
 {
     t_vars vars;
@@ -26,12 +36,15 @@ int main(int argc, char **argv)
 
     if (argc != 2)
         return (1);
+    extension_check(argv[1]);
     fd = open_file(argv[1]);
     init_compo(&compo, fd);
-
-    scene_init(&scene, &compo);
     close(fd);
 
+    //file check
+    invalid_form(&compo);
+
+    scene_init(&scene, &compo);
     // scene = scene_init(image(1600, 900), camera(vec(0, 0, 0), \
     // vec(0, 0, 1), 90.0, 1600.0 / 900.0), 0.2, color(1, 1, 1));
 

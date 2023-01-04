@@ -6,7 +6,7 @@
 #    By: seungjoon <seungjoon@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/16 12:18:03 by seunchoi          #+#    #+#              #
-#    Updated: 2023/01/04 21:07:02 by seungjoon        ###   ########.fr        #
+#    Updated: 2023/01/04 21:46:53 by seungjoon        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ light2.c \
 plane.c \
 cylinder.c \
 utils.c \
-file.c \
+init_compo.c \
 exit.c \
 compo_list.c
 # OBJS = $(SRCS:.c=.o)
