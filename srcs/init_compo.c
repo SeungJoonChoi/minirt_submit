@@ -82,24 +82,7 @@ void check_c(t_compo *head, char **split)
         exit_compo_clear(head, "Invalid file form.");
 }
 
-void check_l(t_compo *head, char **split)
-{
-    int i;
-
-    i = 0;
-    while (split[i])
-        ++i;
-    if (i != 4)
-        exit_compo_clear(head, "Invalid file form.");
-    if (invalid_vec(split[1]))
-        exit_compo_clear(head, "Invalid file form.");
-    if (invalid_double(split[2]))
-        exit_compo_clear(head, "Invalid file form.");
-    if (invalid_vec(split[3]))
-        exit_compo_clear(head, "Invalid file form.");
-}
-
-void check_sp(t_compo *head, char **split)
+void check_l_sp(t_compo *head, char **split)
 {
     int i;
 
@@ -166,9 +149,9 @@ void invalid_form(t_compo *head)
         else if (!ft_strcmp(cur->split_line[0], "C"))
             check_c(head, cur->split_line);
         else if (!ft_strcmp(cur->split_line[0], "L"))
-            check_l(head, cur->split_line);
+            check_l_sp(head, cur->split_line);
         else if (!ft_strcmp(cur->split_line[0], "sp"))
-            check_sp(head, cur->split_line);
+            check_l_sp(head, cur->split_line);
         else if (!ft_strcmp(cur->split_line[0], "pl"))
             check_pl(head, cur->split_line);
         else if (!ft_strcmp(cur->split_line[0], "cy"))
