@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   camera.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seungjoon <marvin@42.fr>                   +#+  +:+       +#+        */
+/*   By: seungjoon <seungjoon@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 20:18:14 by seungjoon         #+#    #+#             */
-/*   Updated: 2023/01/05 20:19:52 by seungjoon        ###   ########.fr       */
+/*   Updated: 2023/01/05 21:16:57 by seungjoon        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ static t_vec	lower_left_corner(t_camera *camera)
 {
 	t_vec	ret;
 
-	ret.x = camera->orig.x - (camera->horizontal.x / 2.0) - \
-		(camera->vertical.x / 2.0) + camera->w.x;
-	ret.y = camera->orig.y - (camera->horizontal.y / 2.0) - \
-		(camera->vertical.y / 2.0) + camera->w.y;
-	ret.z = camera->orig.z - (camera->horizontal.z / 2.0) - \
-		(camera->vertical.z / 2.0) + camera->w.z;
+	ret.x = camera->orig.x - (camera->horiz.x / 2.0) - \
+		(camera->vert.x / 2.0) + camera->w.x;
+	ret.y = camera->orig.y - (camera->horiz.y / 2.0) - \
+		(camera->vert.y / 2.0) + camera->w.y;
+	ret.z = camera->orig.z - (camera->horiz.z / 2.0) - \
+		(camera->vert.z / 2.0) + camera->w.z;
 	return (ret);
 }
 
@@ -48,9 +48,9 @@ static t_camera	camera(t_vec orig, t_vec dir, double fov, double aspect_ratio)
 	ret.u = unit(cross(vup, ret.w));
 	ret.v = cross(ret.w, ret.u);
 	ret.orig = orig;
-	ret.horizontal = v_mul(ret.u, viewport_width);
-	ret.vertical = v_mul(ret.v, viewport_height);
-	ret.lower_left_corner = lower_left_corner(&ret);
+	ret.horiz = v_mul(ret.u, viewport_width);
+	ret.vert = v_mul(ret.v, viewport_height);
+	ret.lower_left = lower_left_corner(&ret);
 	return (ret);
 }
 

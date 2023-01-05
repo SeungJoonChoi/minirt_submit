@@ -6,7 +6,7 @@
 /*   By: seungjoon <seungjoon@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 19:06:14 by seungjoon         #+#    #+#             */
-/*   Updated: 2023/01/05 20:39:09 by seungjoon        ###   ########.fr       */
+/*   Updated: 2023/01/05 21:16:57 by seungjoon        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,9 +81,9 @@ typedef struct s_camera
 	t_vec	w;
 	t_vec	u;
 	t_vec	v;
-	t_vec	horizontal;
-	t_vec	vertical;
-	t_vec	lower_left_corner;
+	t_vec	horiz;
+	t_vec	vert;
+	t_vec	lower_left;
 }	t_camera;
 
 typedef struct s_hit_record
