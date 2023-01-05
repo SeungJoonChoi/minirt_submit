@@ -107,10 +107,36 @@ void check_cy(t_compo *head, char **split)
         exit_compo_clear(head, "Invalid file form.");
 }
 
+static void invalid_number(t_compo *head)
+{
+    t_compo *cur;
+    int a;
+    int c;
+    int l;
+
+    a = 0;
+    c = 0;
+    l = 0;
+    cur = head->next;
+    while (cur)
+    {
+        if (!ft_strcmp(cur->split_line[0], "A"))
+            ++a;
+        else if (!ft_strcmp(cur->split_line[0], "C"))
+            ++c;
+        else if (!ft_strcmp(cur->split_line[0], "L"))
+            ++l;
+        cur = cur->next;
+    }
+    if (a != 1 || c != 1 || l != 1)
+        exit_compo_clear(head, "Invalid number of component.");
+}
+
 void invalid_form(t_compo *head)
 {
     t_compo *cur;
 
+    invalid_number(head);
     cur = head->next;
     while (cur)
     {

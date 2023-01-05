@@ -6,3 +6,7 @@ Ray Tracing
 make
 ./minirt scene.rt
 ```
+
+## todo
+
+range err
