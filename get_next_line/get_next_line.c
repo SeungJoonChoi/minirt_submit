@@ -6,7 +6,7 @@
 /*   By: seungjoon <seungjoon@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 13:34:05 by seunchoi          #+#    #+#             */
-/*   Updated: 2023/01/05 10:47:18 by seungjoon        ###   ########.fr       */
+/*   Updated: 2023/01/05 19:03:08 by seungjoon        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,6 @@ char	*new_backup(char **backup, size_t len)
 	char	*ret;
 
 	new_len = ft_strlen(*backup) - (len + 1);
-	// (len + 1) == 반환할 문자열 + 개행문자
 	ret = (char *)malloc((new_len + 1) * sizeof(char));
 	if (ret == NULL)
 		return (NULL);

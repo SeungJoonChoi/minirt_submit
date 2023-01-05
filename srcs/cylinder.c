@@ -1,18 +1,39 @@
 #include "minirt.h"
 
-t_cylinder *cylinder(t_vec origin, t_vec dir, double diameter, double height, t_color albedo)
+// t_cylinder *cylinder(t_vec origin, t_vec dir, double diameter, double height, t_color albedo)
+// {
+//     t_cylinder *new;
+
+//     if (vec_range(&dir, -1.0, 1.0) || vec_range(&albedo, 0.0, 1.0))
+//         return (NULL);
+//     new = (t_cylinder*)malloc(sizeof(t_cylinder));
+//     if (new == NULL)
+//         return (NULL);
+//     new->o = origin;
+//     new->d = unit(dir);
+//     new->r = diameter * 0.5;
+//     new->half_h = height * 0.5;
+//     new->albedo = albedo;
+//     return (new);
+// }
+
+t_cylinder *cylinder(char **e)
 {
     t_cylinder *new;
+    t_vec dir;
+    t_color albedo;
 
+    dir = stov(e[2]);
+    albedo = ctov(e[5]);
     if (vec_range(&dir, -1.0, 1.0) || vec_range(&albedo, 0.0, 1.0))
         return (NULL);
     new = (t_cylinder*)malloc(sizeof(t_cylinder));
     if (new == NULL)
         return (NULL);
-    new->o = origin;
+    new->o = stov(e[1]);
     new->d = unit(dir);
-    new->r = diameter * 0.5;
-    new->half_h = height * 0.5;
+    new->r = atod(e[3]) * 0.5;
+    new->half_h = atod(e[4]) * 0.5;
     new->albedo = albedo;
     return (new);
 }

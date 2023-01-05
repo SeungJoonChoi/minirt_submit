@@ -63,8 +63,9 @@ static int put_elements(t_scene *s, char **e)
     else if (!ft_strcmp(e[0], "pl"))
         ret = obj_add(&s->world, PL, plane(stov(e[1]), stov(e[2]), ctov(e[3])));
     else if (!ft_strcmp(e[0], "cy"))
-        ret = obj_add(&s->world, CY, cylinder(stov(e[1]), stov(e[2]), \
-        atod(e[3]), atod(e[4]), ctov(e[5])));
+        ret = obj_add(&s->world, CY, cylinder(e));
+        // ret = obj_add(&s->world, CY, cylinder(stov(e[1]), stov(e[2]), \
+        // atod(e[3]), atod(e[4]), ctov(e[5])));
     return (ret);
 }
 

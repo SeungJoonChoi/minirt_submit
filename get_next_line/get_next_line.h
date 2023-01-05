@@ -6,7 +6,7 @@
 /*   By: seungjoon <seungjoon@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 13:34:51 by seunchoi          #+#    #+#             */
-/*   Updated: 2023/01/05 10:45:35 by seungjoon        ###   ########.fr       */
+/*   Updated: 2023/01/05 19:05:16 by seungjoon        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-#ifndef BUFFER_SIZE
-#define BUFFER_SIZE 256
-#endif
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 256
+# endif
 
 char		*get_ret(char *backup);
 char		*read_line(char *backup, int fd);

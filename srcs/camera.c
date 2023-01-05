@@ -1,6 +1,11 @@
 #include "minirt.h"
 
-t_vec lower_left_corner(t_camera *camera)
+static double degToRad(double theta)
+{
+    return (theta * M_PI / 180.0);
+}
+
+static t_vec lower_left_corner(t_camera *camera)
 {
     t_vec ret;
 
