@@ -205,10 +205,6 @@ int hit_cylinder(t_ray *ray, t_cylinder *cylinder, t_hit_record *rec);
 //utils.c
 double atod(const char *str);
 void free_strs(char **strs);
-//init_compo.c
-void extension_check(char* filename);
-void invalid_form(t_compo *head);
-void init_compo(t_compo *compo, int fd);
 //exit.c
 void exit_err(char *msg);
 void exit_compo_clear(t_compo *head, char *msg);
@@ -216,9 +212,19 @@ void exit_compo_clear(t_compo *head, char *msg);
 void compo_list_init(t_compo *head);
 int compo_add(t_compo *head, char **split);
 void compo_clear(t_compo *head);
-//check_file.c
+//file1.c
+void ele_form_check(t_compo *head);
+void set_compo(t_compo *compo, int fd);
+//file2.c
+int invalid_double(char *number);
+int invalid_vec(char *vec);
 int vec_range(t_vec* vec, double min, double max);
 int double_range(double* d, double min, double max);
-void extension_check(char* filename);
+//file3.c
+void check_a(t_compo *head, char **split);
+void check_c(t_compo *head, char **split);
+void check_l_sp(t_compo *head, char **split);
+void check_pl(t_compo *head, char **split);
+void check_cy(t_compo *head, char **split);
 
 #endif

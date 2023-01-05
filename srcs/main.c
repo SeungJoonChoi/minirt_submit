@@ -17,10 +17,20 @@ static int quit_window(t_vars *vars)
     return (0);
 }
 
+static void extension_check(char* filename)
+{
+    char *temp;
+
+    temp = ft_strnstr(filename, ".rt", ft_strlen(filename));
+    if (temp == NULL || ft_strlen(temp) > 3)
+        exit_err("Invalid filename extension.");
+}
+
 static int open_file(char *filename)
 {
     int fd;
 
+    extension_check(filename);
     fd = open(filename, O_RDONLY);
     if (fd < 0)
         exit_err("Can not open file.");
@@ -35,14 +45,13 @@ int main(int argc, char **argv)
     int fd;
 
     if (argc != 2)
-        return (1);
-    extension_check(argv[1]);
+        exit_err("Invalid number of arguments.");
     fd = open_file(argv[1]);
-    init_compo(&compo, fd);
+    set_compo(&compo, fd);
     close(fd);
 
     //file check
-    invalid_form(&compo);
+    ele_form_check(&compo);
 
     scene_init(&scene, &compo);
     // scene = scene_init(image(1600, 900), camera(vec(0, 0, 0), \

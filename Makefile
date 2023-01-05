@@ -6,7 +6,7 @@
 #    By: seungjoon <seungjoon@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/16 12:18:03 by seunchoi          #+#    #+#              #
-#    Updated: 2023/01/05 13:24:39 by seungjoon        ###   ########.fr        #
+#    Updated: 2023/01/05 18:50:13 by seungjoon        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,10 +38,11 @@ light2.c \
 plane.c \
 cylinder.c \
 utils.c \
-init_compo.c \
 exit.c \
 compo_list.c \
-check_file.c
+file1.c \
+file2.c \
+file3.c
 
 GNL_LIST = get_next_line.c \
 get_next_line_utils.c
