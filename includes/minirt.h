@@ -187,6 +187,8 @@ int obj_add(t_obj *head, int type, void *object);
 void obj_clear(t_obj *head);
 void minirt_clear(t_scene* scene, t_compo *compo);
 //scene.c
+t_vec stov(char *str);
+t_vec ctov(char *str);
 void scene_init(t_scene* scene, t_compo *compo);
 //light1.c
 t_light *point_light(t_vec orig, t_color color, double ratio);
@@ -214,5 +216,10 @@ void exit_compo_clear(t_compo *head, char *msg);
 void compo_list_init(t_compo *head);
 int compo_add(t_compo *head, char **split);
 void compo_clear(t_compo *head);
+//check_file.c
+int vec_range(t_vec* vec, double min, double max);
+int double_range(double* d, double min, double max);
+int set_ambient(t_scene *scene, char **split);
+int set_camera(t_scene *scene, char **split);
 
 #endif

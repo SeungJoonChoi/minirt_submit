@@ -4,6 +4,8 @@ t_sphere *sphere(t_vec origin, double radius, t_color albedo)
 {
     t_sphere *new;
 
+    if (vec_range(&albedo, 0.0, 1.0))
+        return (NULL);
     new = (t_sphere*)malloc(sizeof(t_sphere));
     if (new == NULL)
         return (NULL);

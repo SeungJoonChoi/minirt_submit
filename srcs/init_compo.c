@@ -153,7 +153,7 @@ void invalid_form(t_compo *head)
         else if (!ft_strcmp(cur->split_line[0], "cy"))
             check_cy(head, cur->split_line);
         else
-            exit_compo_clear(head, "Invalid file form.");
+            exit_compo_clear(head, "Invalid element type.");
         cur = cur->next;
     }
 }
@@ -176,7 +176,7 @@ void init_compo(t_compo *compo, int fd)
     while (1)
     {
         buf = get_next_line(fd);
-        if (buf)
+        if (buf && *buf != '\0')
         {
             split_line = ft_split(buf, ' ');
             if (compo_add(compo, split_line))
@@ -186,9 +186,9 @@ void init_compo(t_compo *compo, int fd)
                 close(fd);
                 exit_err("Can not open file.");
             }
-            free(buf);
         }
-        else
+        else if (!buf)
             break ;
+        free(buf);
     }
 }

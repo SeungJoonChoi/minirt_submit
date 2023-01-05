@@ -1,6 +1,6 @@
 #include "minirt.h"
 
-static t_vec stov(char *str)
+t_vec stov(char *str)
 {
     t_vec ret;
 
@@ -16,7 +16,7 @@ static t_vec stov(char *str)
     return (ret);
 }
 
-static t_color ctov(char *str)
+t_color ctov(char *str)
 {
     t_color ret;
 
@@ -38,9 +38,9 @@ static int put_elements(t_scene *s, char **e)
 
     ret = 0;
     if (!ft_strcmp(e[0], "A"))
-        s->ambient = v_mul(ctov(e[2]), atod(e[1]));
+        ret = set_ambient(s, e);
     else if (!ft_strcmp(e[0], "C"))
-        s->camera = camera(stov(e[1]), stov(e[2]), atod(e[3]), 16.0 / 9.0);
+        ret = set_camera(s, e);
     else if (!ft_strcmp(e[0], "L"))
         ret = obj_add(&s->light, POINT, point_light(stov(e[1]), \
         ctov(e[3]), atod(e[2])));

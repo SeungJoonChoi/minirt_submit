@@ -4,6 +4,8 @@ t_cylinder *cylinder(t_vec origin, t_vec dir, double diameter, double height, t_
 {
     t_cylinder *new;
 
+    if (vec_range(&dir, -1.0, 1.0) || vec_range(&albedo, 0.0, 1.0))
+        return (NULL);
     new = (t_cylinder*)malloc(sizeof(t_cylinder));
     if (new == NULL)
         return (NULL);

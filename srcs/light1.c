@@ -4,6 +4,8 @@ t_light *point_light(t_vec orig, t_color color, double intensity)
 {
     t_light *new;
 
+    if (vec_range(&color, 0.0, 1.0) || double_range(&intensity, 0.0, 1.0))
+        return (NULL);
     new = (t_light*)malloc(sizeof(t_light));
     new->orig = orig;
     new->color = color;

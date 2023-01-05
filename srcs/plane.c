@@ -4,6 +4,8 @@ t_plane *plane(t_vec origin, t_vec dir, t_color albedo)
 {
     t_plane *new;
 
+    if (vec_range(&dir, -1.0, 1.0) || vec_range(&albedo, 0.0, 1.0))
+        return (NULL);
     new = (t_plane*)malloc(sizeof(t_plane));
     if (new == NULL)
         return (NULL);
