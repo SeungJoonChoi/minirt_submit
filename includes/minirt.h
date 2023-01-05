@@ -6,7 +6,7 @@
 /*   By: seungjoon <seungjoon@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 19:06:14 by seungjoon         #+#    #+#             */
-/*   Updated: 2023/01/05 19:49:11 by seungjoon        ###   ########.fr       */
+/*   Updated: 2023/01/05 20:39:09 by seungjoon        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,12 @@ typedef struct s_cylinder
 	double	half_h;
 	t_color	albedo;
 }	t_cylinder;
+
+typedef struct s_cy_calc
+{
+	double	root;
+	double	h;
+}	t_cy_calc;
 
 typedef struct s_obj
 {
