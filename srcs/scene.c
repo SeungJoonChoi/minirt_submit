@@ -32,6 +32,20 @@ t_color ctov(char *str)
     return (ret);
 }
 
+static int set_ambient(t_scene *scene, char **split)
+{
+    t_vec rgb;
+    double ratio;
+
+    rgb = ctov(split[2]);
+    ratio = atod(split[1]);
+
+    if (vec_range(&rgb, 0.0, 1.0) || double_range(&ratio, 0.0, 1.0))
+        return (1);
+    scene->ambient = v_mul(rgb, ratio);
+    return (0);
+}
+
 static int put_elements(t_scene *s, char **e)
 {
     int ret;

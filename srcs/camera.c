@@ -13,7 +13,7 @@ t_vec lower_left_corner(t_camera *camera)
     return (ret);
 }
 
-t_camera camera(t_vec orig, t_vec dir, double fov, double aspect_ratio)
+static t_camera camera(t_vec orig, t_vec dir, double fov, double aspect_ratio)
 {
     t_camera ret;
     double h;
@@ -35,4 +35,17 @@ t_camera camera(t_vec orig, t_vec dir, double fov, double aspect_ratio)
     ret.vertical = v_mul(ret.v, viewport_height);
     ret.lower_left_corner = lower_left_corner(&ret);
     return (ret);
+}
+
+int set_camera(t_scene *scene, char **split)
+{
+    t_vec dir;
+    double fov;
+
+    dir = stov(split[2]);
+    fov = atod(split[3]);
+    if (vec_range(&dir, -1.0, 1.0) || double_range(&fov, 0.0, 180.0))
+        return (1);
+    scene->camera = camera(stov(split[1]), dir, fov, 16.0 / 9.0);
+    return (0);
 }

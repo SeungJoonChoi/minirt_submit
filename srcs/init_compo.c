@@ -158,15 +158,6 @@ void invalid_form(t_compo *head)
     }
 }
 
-void extension_check(char* filename)
-{
-    char *temp;
-
-    temp = ft_strnstr(filename, ".rt", ft_strlen(filename));
-    if (temp == NULL || ft_strlen(temp) > 3)
-        exit_err("Invalid filename extension.");
-}
-
 void init_compo(t_compo *compo, int fd)
 {
     char *buf;

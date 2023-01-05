@@ -164,7 +164,7 @@ t_vec ray_at(t_ray *ray, double t);
 t_ray ray_viewport(t_scene *scene, double u, double v);
 //camera.c
 t_vec lower_left_corner(t_camera *camera);
-t_camera camera(t_vec orig, t_vec dir, double fov, double aspect_ratio);
+int set_camera(t_scene *scene, char **split);
 //image.c
 t_image image(int width, int height);
 void image_put(t_vars *vars, t_scene *scene);
@@ -219,7 +219,6 @@ void compo_clear(t_compo *head);
 //check_file.c
 int vec_range(t_vec* vec, double min, double max);
 int double_range(double* d, double min, double max);
-int set_ambient(t_scene *scene, char **split);
-int set_camera(t_scene *scene, char **split);
+void extension_check(char* filename);
 
 #endif
