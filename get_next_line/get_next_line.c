@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seunchoi <seunchoi@student.42seoul.>       +#+  +:+       +#+        */
+/*   By: seungjoon <seungjoon@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 13:34:05 by seunchoi          #+#    #+#             */
-/*   Updated: 2022/02/10 13:34:15 by seunchoi         ###   ########.fr       */
+/*   Updated: 2023/01/05 10:47:18 by seungjoon        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ char	*get_ret(char *backup)
 
 	if (ft_strchr(backup, '\n'))
 	{
-		len = ft_strchr(backup, '\n') - backup + 1;
+		len = ft_strchr(backup, '\n') - backup;
 	}
 	else
 	{
@@ -93,11 +93,12 @@ char	*new_backup(char **backup, size_t len)
 	size_t	new_len;
 	char	*ret;
 
-	new_len = ft_strlen(*backup) - len;
+	new_len = ft_strlen(*backup) - (len + 1);
+	// (len + 1) == 반환할 문자열 + 개행문자
 	ret = (char *)malloc((new_len + 1) * sizeof(char));
 	if (ret == NULL)
 		return (NULL);
-	ft_strlcpy(ret, *backup + len, new_len + 1);
+	ft_strlcpy(ret, *backup + (len + 1), new_len + 1);
 	free(*backup);
 	*backup = NULL;
 	return (ret);

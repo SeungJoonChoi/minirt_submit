@@ -14,7 +14,7 @@ static int invalid_double(char *number)
             ++dot_count;
         ++number;
     }
-    if ((*number != '\0' && *number != '\n') || dot_count > 1)
+    if (*number != '\0' || dot_count > 1)
         return (1);
     return (0);
 }
@@ -30,7 +30,7 @@ static int invalid_vec(char *vec)
     i = 0;
     while (e[i])
     {
-        if (invalid_double(e[i]))
+        if (e[i][0] == '\0' || invalid_double(e[i]))
         {
             free_strs(e);
             return (1);
@@ -57,11 +57,8 @@ void check_a(t_compo *head, char **split)
     i = 0;
     while (split[i])
         ++i;
-    if (i != 3)
-        exit_compo_clear(head, "Invalid file form.");
-    if (invalid_double(split[1]))
-        exit_compo_clear(head, "Invalid file form.");
-    if (invalid_vec(split[2]))
+
+    if (i != 3 || invalid_double(split[1]) || invalid_vec(split[2]))
         exit_compo_clear(head, "Invalid file form.");
 }
 

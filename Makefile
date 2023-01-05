@@ -6,7 +6,7 @@
 #    By: seungjoon <seungjoon@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/16 12:18:03 by seunchoi          #+#    #+#              #
-#    Updated: 2023/01/04 21:46:53 by seungjoon        ###   ########.fr        #
+#    Updated: 2023/01/05 10:50:41 by seungjoon        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,6 @@ utils.c \
 init_compo.c \
 exit.c \
 compo_list.c
-# OBJS = $(SRCS:.c=.o)
 
 GNL_LIST = get_next_line.c \
 get_next_line_utils.c
