@@ -6,7 +6,7 @@
 /*   By: seungjoon <seungjoon@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 20:18:14 by seungjoon         #+#    #+#             */
-/*   Updated: 2023/01/05 21:16:57 by seungjoon        ###   ########.fr       */
+/*   Updated: 2023/01/16 19:11:37 by seungjoon        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,13 @@ static t_camera	camera(t_vec orig, t_vec dir, double fov, double aspect_ratio)
 	double		viewport_width;
 	t_vec		vup;
 
+	if (dir.x == 0.0 && dir.y == 0.0 && dir.z == 0.0)
+		dir = vec(0, 0, 1);
 	h = tan(deg_to_rad(fov) / 2.0);
 	viewport_height = 2.0 * h;
 	viewport_width = aspect_ratio * viewport_height;
 	vup = vec(0, 1, 0);
-	if (dir.x == 0 && dir.y != 0 && dir.z == 0)
+	if (dir.x == 0.0 && dir.y != 0.0 && dir.z == 0.0)
 		vup = vec(0, 0, 1);
 	ret.w = unit(dir);
 	ret.u = unit(cross(vup, ret.w));
