@@ -6,7 +6,7 @@
 /*   By: seungjoon <seungjoon@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 20:22:48 by seungjoon         #+#    #+#             */
-/*   Updated: 2023/01/05 20:53:50 by seungjoon        ###   ########.fr       */
+/*   Updated: 2023/01/17 10:53:53 by seungjoon        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ t_cylinder	*cylinder(char **e)
 	if (new == NULL)
 		return (NULL);
 	new->o = stov(e[1]);
+	if (dir.x == 0.0 && dir.y == 0.0 && dir.z == 0.0)
+		dir = vec(0, 1, 0);
 	new->d = unit(dir);
 	new->r = atod(e[3]) * 0.5;
 	new->half_h = atod(e[4]) * 0.5;

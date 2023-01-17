@@ -6,11 +6,12 @@
 /*   By: seungjoon <seungjoon@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 13:34:05 by seunchoi          #+#    #+#             */
-/*   Updated: 2023/01/05 19:03:08 by seungjoon        ###   ########.fr       */
+/*   Updated: 2023/01/17 12:32:48 by seungjoon        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include <stdio.h>
 
 char	*get_next_line(int fd)
 {
@@ -93,7 +94,9 @@ char	*new_backup(char **backup, size_t len)
 	size_t	new_len;
 	char	*ret;
 
-	new_len = ft_strlen(*backup) - (len + 1);
+	new_len = ft_strlen(*backup) - len;
+	if (ft_strchr(*backup, '\n'))
+		new_len -= 1;
 	ret = (char *)malloc((new_len + 1) * sizeof(char));
 	if (ret == NULL)
 		return (NULL);

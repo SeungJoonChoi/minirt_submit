@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   plane.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seungjoon <marvin@42.fr>                   +#+  +:+       +#+        */
+/*   By: seungjoon <seungjoon@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 21:09:23 by seungjoon         #+#    #+#             */
-/*   Updated: 2023/01/05 21:09:58 by seungjoon        ###   ########.fr       */
+/*   Updated: 2023/01/17 10:58:21 by seungjoon        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ t_plane	*plane(t_vec origin, t_vec dir, t_color albedo)
 	if (new == NULL)
 		return (NULL);
 	new->o = origin;
+	if (dir.x == 0.0 && dir.y == 0.0 && dir.z == 0.0)
+		dir = vec(0, 1, 0);
 	new->d = unit(dir);
 	new->albedo = albedo;
 	return (new);
