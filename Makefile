@@ -6,18 +6,19 @@
 #    By: seungjoon <seungjoon@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/16 12:18:03 by seunchoi          #+#    #+#              #
-#    Updated: 2023/01/05 18:50:13 by seungjoon        ###   ########.fr        #
+#    Updated: 2023/01/17 14:41:25 by seungjoon        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
-NAME = minirt
+NAME = miniRT
 
 INCLUDE = -I./includes -I./get_next_line -I./mlx -I./libft
 LIBS = -L./mlx -lmlx -L./libft -lft
 
 SRC_DIR = ./srcs/
+BONUS_DIR = ./bonus_srcs/
 GNL_DIR = ./get_next_line/
 
 SRC_LIST = main.c \
@@ -44,29 +45,68 @@ file1.c \
 file2.c \
 file3.c
 
+BONUS_LIST = main_bonus.c \
+ray_bonus.c \
+vec1_bonus.c \
+vec2_bonus.c \
+image_bonus.c \
+camera_bonus.c \
+color_bonus.c \
+mlx_utils_bonus.c \
+sphere_bonus.c \
+hit_bonus.c \
+obj_list_bonus.c \
+scene_bonus.c \
+vec3_bonus.c \
+light1_bonus.c \
+light2_bonus.c \
+plane_bonus.c \
+cylinder_bonus.c \
+utils_bonus.c \
+exit_bonus.c \
+compo_list_bonus.c \
+file1_bonus.c \
+file2_bonus.c \
+file3_bonus.c
+
 GNL_LIST = get_next_line.c \
 get_next_line_utils.c
 
 SRCS = $(addprefix $(SRC_DIR), $(SRC_LIST))
 OBJS = $(SRCS:.c=.o)
 
+BONUS_SRCS = $(addprefix $(BONUS_DIR), $(BONUS_LIST))
+BONUS_OBJS = $(BONUS_SRCS:.c=.o)
+
 GNL_SRCS = $(addprefix $(GNL_DIR), $(GNL_LIST))
 GNL_OBJS = $(GNL_SRCS:.c=.o)
+
+ifdef BO
+	OBJ_FILES = $(BONUS_OBJS) $(GNL_OBJS)
+else
+	OBJ_FILES = $(OBJS) $(GNL_OBJS)
+endif
 
 .c.o :
 	$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 
-$(NAME) : $(OBJS) $(GNL_OBJS)
+all :
+	rm -f $(BONUS_OBJS)
+	make $(NAME)
+
+$(NAME) : $(OBJ_FILES)
 	$(MAKE) -C./mlx
 	$(MAKE) -C./libft
-	$(CC) $(CFLAGS) $(INCLUDE) $(LIBS) -o $(NAME) $(OBJS) $(GNL_OBJS) -framework OpenGL -framework Appkit
+	$(CC) $(CFLAGS) $(INCLUDE) $(LIBS) -o $(NAME) $(OBJ_FILES) -framework OpenGL -framework Appkit
 
-all : $(NAME)
+bonus :
+	# rm -f $(OBJS)
+	make BO=1 $(NAME)
 
 clean :
 	$(MAKE) -C./mlx clean
 	$(MAKE) -C./libft clean
-	rm -f $(OBJS) $(GNL_OBJS)
+	rm -f $(OBJS) $(BONUS_OBJS) $(GNL_OBJS)
 
 fclean : clean
 	$(MAKE) -C./libft fclean
@@ -74,4 +114,4 @@ fclean : clean
 
 re : fclean all
 
-.PHONY : all clean fclean re
+.PHONY : all bonus clean fclean re
