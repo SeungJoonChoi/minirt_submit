@@ -6,12 +6,11 @@
 /*   By: seungjoon <seungjoon@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 13:34:05 by seunchoi          #+#    #+#             */
-/*   Updated: 2023/01/17 12:32:48 by seungjoon        ###   ########.fr       */
+/*   Updated: 2023/01/17 15:07:05 by seungjoon        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <stdio.h>
 
 char	*get_next_line(int fd)
 {

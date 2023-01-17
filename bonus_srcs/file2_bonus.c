@@ -6,7 +6,7 @@
 /*   By: seungjoon <seungjoon@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 20:56:42 by seungjoon         #+#    #+#             */
-/*   Updated: 2023/01/17 13:52:48 by seungjoon        ###   ########.fr       */
+/*   Updated: 2023/01/17 15:02:42 by seungjoon        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	invalid_double(char *number)
 	int	dot_count;
 
 	dot_count = 0;
-	if (number == NULL || ft_strlen(number) <= 0)
+	if (number == NULL || ft_strlen(number) <= 0 || *number == '.')
 		return (1);
 	while (ft_isdigit(*number) || *number == '.' || \
 			*number == '+' || *number == '-')
