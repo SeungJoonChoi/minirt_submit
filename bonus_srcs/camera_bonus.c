@@ -62,6 +62,8 @@ int	set_camera(t_scene *scene, char **split)
 	double	fov;
 
 	dir = stov(split[2]);
+	if (dir.x == 0.0 && dir.y == 0.0 && dir.z == 0.0)
+		return (1);
 	fov = atod(split[3]);
 	if (vec_range(&dir, -1.0, 1.0) || double_range(&fov, 0.0, 180.0))
 		return (1);

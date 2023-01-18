@@ -16,14 +16,14 @@ t_plane	*plane(t_vec origin, t_vec dir, t_color albedo)
 {
 	t_plane	*new;
 
+	if (dir.x == 0.0 && dir.y == 0.0 && dir.z == 0.0)
+		return (NULL);
 	if (vec_range(&dir, -1.0, 1.0) || vec_range(&albedo, 0.0, 1.0))
 		return (NULL);
 	new = (t_plane *)malloc(sizeof(t_plane));
 	if (new == NULL)
 		return (NULL);
 	new->o = origin;
-	if (dir.x == 0.0 && dir.y == 0.0 && dir.z == 0.0)
-		dir = vec(0, 1, 0);
 	new->d = unit(dir);
 	new->albedo = albedo;
 	return (new);

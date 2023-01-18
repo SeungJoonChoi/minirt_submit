@@ -19,6 +19,8 @@ t_cylinder	*cylinder(char **e)
 	t_color		albedo;
 
 	dir = stov(e[2]);
+	if (dir.x == 0.0 && dir.y == 0.0 && dir.z == 0.0)
+		return (NULL);
 	albedo = ctov(e[5]);
 	if (vec_range(&dir, -1.0, 1.0) || vec_range(&albedo, 0.0, 1.0))
 		return (NULL);
@@ -26,8 +28,6 @@ t_cylinder	*cylinder(char **e)
 	if (new == NULL)
 		return (NULL);
 	new->o = stov(e[1]);
-	if (dir.x == 0.0 && dir.y == 0.0 && dir.z == 0.0)
-		dir = vec(0, 1, 0);
 	new->d = unit(dir);
 	new->r = atod(e[3]) * 0.5;
 	new->half_h = atod(e[4]) * 0.5;
